@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   before_action :discussion_order, only: [:index, :show]
   before_action :channel_order, only: [:index, :show, :new, :edit]
-  before_action :authenticate_user!, excecpt: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /discussions
   # GET /discussions.json
@@ -72,7 +72,7 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params.require(:discussion).permit(:title, :content)
+      params.require(:discussion).permit(:title, :content, :channel_id)
     end
     
     def discussion_order
