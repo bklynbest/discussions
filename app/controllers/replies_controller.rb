@@ -22,12 +22,12 @@ class RepliesController < ApplicationController
   end
   
   def destroy 
-    @reply = Discussion.replies.find(params[:id])
+    @reply = @discussion.replies.find(params[:id])
     @reply.destroy
     
     respond_to do |format|
       
-      format.html {redirect to discussion_path(@discussion), notice: "You reply was successfully destroyed" }
+      format.html {redirect_to discussion_path(@discussion), notice: "You reply was successfully destroyed" }
     end
   end
   
