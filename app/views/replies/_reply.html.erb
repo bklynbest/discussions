@@ -8,12 +8,12 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= reply.user.username %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
+          <strong><%= reply.user.username %></strong><small> replied <%= time_ago_in_words(reply.created_at) %> ago</small>
           <br/>
           <%= (reply.reply) %>
         </p>
       </div>
-      <% if reply_author(reply) #|| has_role?(:admin) %>
+      <% if reply_author(reply) || has_role?(:admin) %>
       <nav class="level is-mobile">
         <div class="level-left">
           <a class="level-item">
