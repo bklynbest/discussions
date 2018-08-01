@@ -4,7 +4,7 @@ class RepliesController < ApplicationController
   before_action :set_discussion, except: [:new]
   
   def create
-    @reply = Discussion.replies.create(params[:reply]).permit(:reply, :discussion_id)
+    @reply = @discussion.replies.create(params[:reply].permit(:reply, :discussion_id))
     @reply.user_id = current_user.id
     
     respond_to do |format|
@@ -34,6 +34,9 @@ class RepliesController < ApplicationController
   def edit
     @discussion = Discussion.find(params[:discussion_id])
     @reply = @discussion.replies.find(params[:id])
+  end
+  
+  def show
   end
   
   def update

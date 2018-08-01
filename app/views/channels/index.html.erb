@@ -1,27 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Channels</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Channel</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @channels.each do |channel| %>
-      <tr>
-        <td><%= channel.channel %></td>
-        <td><%= link_to 'Show', channel %></td>
-        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Channel', new_channel_path %>
+<div class="columns">
+  
+<%# if has_role?(:admin) %>
+  <% @channels.each do |channel| %>
+    <div class="column is-4">
+      <div class="box">
+      <div class="content">
+        <table>
+          <tr>
+            <th class="title is-5 is-centered">Channel</th>
+            <th colspan="3"></th>
+          </tr>
+          <tr>
+            <td><%= link_to channel.channel, channel, class: "button is-black" %></td>
+            <td><%= link_to 'Show', channel, class: "button" %></td>
+            <td><%= link_to 'Edit', edit_channel_path(channel), class: "button is-warning" %></td>
+            <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<%# else %>
+ <p class="has-text-center">Sorry! You don't have access this page.</p>
+<%# end %>
